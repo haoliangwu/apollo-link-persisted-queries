@@ -1,6 +1,6 @@
 {
   "name": "angular-apollo-link-persisted-queries",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "Use persisted queries with Apollo Link",
   "author": "James Baxley <james@meteor.com>",
   "license": "MIT",
@@ -54,6 +54,7 @@
     "apollo-cache-inmemory": "^1.1.4",
     "apollo-client": "^2.0.4",
     "apollo-link-http": "^1.5.0",
+    "apollo-angular-link-http": "^1.0.2-beta.0",
     "browserify": "14.5.0",
     "bundlesize": "0.15.3",
     "codecov": "3.0.0",
