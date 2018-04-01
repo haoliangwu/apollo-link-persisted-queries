@@ -1,5 +1,5 @@
 {
-  "name": "apollo-link-persisted-queries",
+  "name": "angular-apollo-link-persisted-queries",
   "version": "0.2.0",
   "description": "Use persisted queries with Apollo Link",
   "author": "James Baxley <james@meteor.com>",

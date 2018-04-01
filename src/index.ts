@@ -147,14 +147,21 @@ export const createPersistedQueryLink = (
             // need to recall the link chain
             if (subscription) subscription.unsubscribe();
             // actually send the query this time
+            // operation.setContext({
+            //   http: {
+            //     includeQuery: true,
+            //     includeExtensions: supportsPersistedQueries,
+            //   },
+            // });
+
+            // for angular-apollo-http-link
             operation.setContext({
-              http: {
-                includeQuery: true,
-                includeExtensions: supportsPersistedQueries,
-              },
+              includeQuery: true,
+              includeExtensions: supportsPersistedQueries,
             });
+
             if (setFetchOptions) {
-              operation.setContext({ fetchOptions: originalFetchOptions });
+              operation.setContext({ ...originalFetchOptions });
             }
             subscription = forward(operation).subscribe(handler);
 
@@ -174,11 +181,17 @@ export const createPersistedQueryLink = (
       };
 
       // don't send the query the first time
+      // operation.setContext({
+      //   http: {
+      //     includeQuery: !supportsPersistedQueries,
+      //     includeExtensions: supportsPersistedQueries,
+      //   },
+      // });
+
+      // for angular-apollo-http-link
       operation.setContext({
-        http: {
-          includeQuery: !supportsPersistedQueries,
-          includeExtensions: supportsPersistedQueries,
-        },
+        includeQuery: !supportsPersistedQueries,
+        includeExtensions: supportsPersistedQueries,
       });
 
       // If requested, set method to GET if there are no mutations. Remember the
@@ -192,7 +205,7 @@ export const createPersistedQueryLink = (
         operation.setContext(({ fetchOptions = {} }) => {
           originalFetchOptions = fetchOptions;
           return {
-            fetchOptions: Object.assign({}, fetchOptions, { method: 'GET' }),
+            ...Object.assign({}, fetchOptions, { method: 'GET' }),
           };
         });
         setFetchOptions = true;
